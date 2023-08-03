@@ -77,8 +77,14 @@ WSGI_APPLICATION = 'assignment1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        # 'ENGINE': 'django.db.backends.sqlite3',
+        # 'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            'host':'localhost',
+            'port':27017,
+        },
+        'NAME': 'SAA1',
     }
 }
 

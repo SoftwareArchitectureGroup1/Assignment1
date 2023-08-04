@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Authors</h1>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th><a href="?order_by=name">Name</a></th>
+                <th>Published Books</th>
+                <th>Avg Score</th>
+                <th>Total Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td>{{ author.name }}</td>
+                <td>{{ author.books_count }}</td>
+                <td>{{ author.country }}</td>
+                <td>{{ author.total_sales }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -11,5 +11,6 @@ router.register(r'sales', views.SaleViewSet)
 
 urlpatterns = [
     path('', views.home, name='home'),
+    path('authors', views.AuthorsTableView.as_view()),
     path('api/', include(router.urls)),   
 ]

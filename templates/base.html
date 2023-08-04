@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		{% load static %}
+		{% load bootstrap5 %}
+		{% bootstrap_css %}
+		{% bootstrap_javascript %}
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+		<title>CleverHomePlatform - AutoHaus</title>
+	</head>
+
+	<body style="height: 100%;">
+		<div class="page-header">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+				<div class="container">
+					<a class="navbar-brand" href="#">CleverHome</a>
+					<div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+						<div class="navbar-nav">
+							<a class="nav-link" href="{% url 'home' %}">Home</a>
+						</div>
+						<div class="navbar-nav ms-auto">
+							<a class="nav-link" href="{% url 'logout' %}"> 
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+									<path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+									<path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+							  	</svg>
+								Log Out
+							</a>
+					</div>
+				</div>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+					<span class="navbar-toggler-icon"></span>
+				</button>
+
+			</nav>
+		</div>
+
+		<div>
+			{% block content %}
+
+			{% endblock %}
+		</div>
+
+	<!-- <footer class="text-center text-lg-start" style="position: fixed; left: 0; bottom: 0; width: 100%; background-color: rgb(246, 246, 246);">
+		<div class="text-center p-3">
+		&copy; 2023 AutoHaus
+		</div>
+  	</footer> -->
+	</body>
+	<script src="{% static '/js/base.js' %}"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.7.7/handlebars.min.js"></script>
+	{% block js_script %}
+	{% endblock %}
+</html>

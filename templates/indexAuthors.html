@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Authors</h1>
+    <a href="{% url 'create-author' %}" class="btn btn-primary">Create New Author</a>
+    <table class="table mt-4">
+        <!-- ... Table header ... -->
+        <tbody>
+            {% for author in authors %}
+            <tr>
+                <td><a href="{% url 'detail-author-view' author_id=author.id %}">{{ author.name }}</a></td>
+                <td>{{ author.country }}</td>
+                <td>{{ author.birthday }}</td>
+                <td>{{ author.description }}</td>
+                <td>
+                    <a href="{% url 'edit-author' author_id=author.id %}" class="btn btn-info btn-sm">Edit</a>
+                </td>
+                <td>
+                    <button class="btn btn-danger btn-sm delete-author-btn" data-author-id="{{ author.id }}">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+    {% csrf_token %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'scripts/deleteauthor.js' %}"></script>
+
+{% endblock %}

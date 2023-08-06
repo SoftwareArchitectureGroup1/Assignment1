@@ -20,6 +20,7 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('deleteauthor/<int:author_id>/', views.delete_author, name='delete-author'),
     path('editauthor/<int:author_id>/', views.EditAuthorView.as_view(), name='edit-author'),
+    path('author/<int:author_id>/', views.AuthorDetailView.as_view(), name='author-detail'),
 ]
 
 if settings.DEBUG:

@@ -64,3 +64,11 @@ class EditAuthorView(View):
             form.save()
             return redirect('indexAuthor')
         return render(request, self.template_name, {'form': form, 'author': author})
+
+class AuthorDetailView(View):
+    template_name = 'detailAuthor.html'
+
+    def get(self, request, author_id):
+        author = get_object_or_404(Author, id=author_id)
+        books = author.books.all()
+        return render(request, self.template_name, {'author': author, 'books': books})

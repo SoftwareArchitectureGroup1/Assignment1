@@ -4,19 +4,17 @@
 {% block content %}
 <div class="container">
     <h1>{{ author.name }}</h1>
-    <p><strong>Birthday:</strong> {{ author.birthday }}</p>
-    <p><strong>Country:</strong> {{ author.country }}</p>
-    <p><strong>Description:</strong> {{ author.description }}</p>
+    <p>Birthday: {{ author.birthday }}</p>
+    <p>Country: {{ author.country }}</p>
+    <p>Description: {{ author.description }}</p>
 
-    <h2>Books Written by {{ author.name }}</h2>
-    {% if books %}
-        <ul>
-            {% for book in books %}
-                <li>{{ book.name }} - {{ book.date_of_publication }}</li>
-            {% endfor %}
-        </ul>
-    {% else %}
-        <p>No books written by this author yet.</p>
-    {% endif %}
+    <h2>Books by {{ author.name }}</h2>
+    <ul>
+        {% for book in books %}
+            <li>{{ book.name }} - {{ book.date_of_publication }}</li>
+        {% empty %}
+            <li>No books found.</li>
+        {% endfor %}
+    </ul>
 </div>
 {% endblock %}

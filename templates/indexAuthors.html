@@ -6,11 +6,10 @@
     <h1>Authors</h1>
     <a href="{% url 'create-author' %}" class="btn btn-primary">Create New Author</a>
     <table class="table mt-4">
-        <!-- ... Table header ... -->
         <tbody>
             {% for author in authors %}
             <tr>
-                <td><a href="{% url 'detail-author-view' author_id=author.id %}">{{ author.name }}</a></td>
+                <td><a href="{% url 'detail-author-view' pk=author.id %}">{{ author.name }}</a></td>
                 <td>{{ author.country }}</td>
                 <td>{{ author.birthday }}</td>
                 <td>{{ author.description }}</td>

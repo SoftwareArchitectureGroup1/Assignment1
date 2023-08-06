@@ -2,11 +2,13 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from a1.models import Author
+from a1.models import Book
 from a1.serializers import AuthorSerializer
 from a1.forms import AuthorForm
 from django.views.generic.edit import CreateView
 from django.views.generic import DeleteView
 from django.http import JsonResponse
+from django.views.generic import DetailView
 
 # TODO filtering and ordering
 # FIXME missing avg score field
@@ -65,10 +67,15 @@ class EditAuthorView(View):
             return redirect('indexAuthor')
         return render(request, self.template_name, {'form': form, 'author': author})
 
-class AuthorDetailView(View):
+class AuthorDetailView(DetailView):
+    model = Author
     template_name = 'detailAuthor.html'
+    context_object_name = 'author'
 
-    def get(self, request, author_id):
-        author = get_object_or_404(Author, id=author_id)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        author = self.get_object()
         books = author.books.all()
-        return render(request, self.template_name, {'author': author, 'books': books})
+        print("Number of books:", books.count())
+        context['books'] = books
+        return context

@@ -1,19 +1,19 @@
 $(document).ready(function () {
-    $('.delete-sale-btn').click(function () {
+    $('.delete-review-btn').click(function () {
         console.log("entered");
-        const saleId = $(this).data('sale-id');
-        if (confirm('Are you sure you want to delete this sale?')) {
+        const reviewId = $(this).data('review-id');
+        if (confirm('Are you sure you want to delete this review?')) {
             const csrfToken = $('input[name="csrfmiddlewaretoken"]').val();
             $.ajax({
                 type: 'DELETE',
-                url: `/deletesale/${saleId}/`,
+                url: `/deletereview/${reviewId}/`,
                 headers: { 'X-CSRFToken': csrfToken },
                 success: function (response) {
                     alert(response.message);
                     location.reload();
                 },
                 error: function (response) {
-                    alert('Error deleting sale.');
+                    alert('Error deleting review.');
                 }
             });
         }

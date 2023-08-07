@@ -23,6 +23,9 @@
                 <td>
                     <a href="{% url 'edit_review' review_id=review.id %}" class="btn btn-info btn-sm">Edit</a>
                 </td>
+                <td>
+                    <button class="btn btn-danger btn-sm delete-review-btn" data-review-id="{{ review.id }}">Delete</button>
+                </td>
             </tr>
 
             {% endfor %}
@@ -31,5 +34,5 @@
     </div>
     {% csrf_token %}
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'scripts/deletesale.js' %}"></script>
+<script src="{% static 'scripts/deletereview.js' %}"></script>
 {% endblock %}

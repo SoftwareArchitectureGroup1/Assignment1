@@ -50,3 +50,13 @@ class EditReviewView(View):
             form.save()
             return redirect(f'/book/{review.book.id}/reviews')
         return render(request, self.template_name, {'form': form, 'review': review})
+
+def delete_review(request, review_id):
+    try:
+        review = Review.objects.get(id=review_id)
+        review.delete()
+        return JsonResponse({'message': 'Review deleted successfully.'})
+    except Review.DoesNotExist:
+        return JsonResponse({'error': 'Review not found.'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': 'Error deleting review.'}, status=500)

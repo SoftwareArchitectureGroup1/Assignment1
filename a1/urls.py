@@ -32,6 +32,7 @@ urlpatterns = [
     path('book/<int:book_id>/reviews', views.ReviewsView.as_view(), name='reviews'),
     path('create_review/<int:book_id>/', views.create_review, name='create_review'),
     path('edit_review/<int:review_id>/', views.EditReviewView.as_view(), name='edit_review'),
+    path('deletereview/<int:review_id>/', views.delete_review, name='delete-review'),
 ]
 
 if settings.DEBUG:

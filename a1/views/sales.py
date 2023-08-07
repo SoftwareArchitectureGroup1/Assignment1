@@ -67,7 +67,7 @@ def delete_sale(request, sale_id):
         sale = Sale.objects.get(id=sale_id)
         sale.delete()
         return JsonResponse({'message': 'Sale deleted successfully.'})
-    except Author.DoesNotExist:
+    except Sale.DoesNotExist:
         return JsonResponse({'error': 'Sale not found.'}, status=404)
     except Exception as e:
         return JsonResponse({'error': 'Error deleting sale.'}, status=500)

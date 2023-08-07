@@ -15,7 +15,7 @@
         <tbody>
             {% for sale in sales %}
             <tr>
-                <td> {{ sale.pk}}</td>
+                <td>{{ sale.pk}}</td>
                 <td>{{ sale.year }}</td>
                 <td>{{ sale.sales }}</td>
                 <td>
@@ -31,6 +31,9 @@
     </table>
     </div>
     {% csrf_token %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'scripts/deletesale.js' %}"></script>
+
+{% endblock %}
+
+{% block js_script %}
+    <script src="{% static 'scripts/deletesale.js' %}"></script>
 {% endblock %}

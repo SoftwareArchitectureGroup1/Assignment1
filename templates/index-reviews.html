@@ -50,7 +50,10 @@
     </table>
     </div>
     {% csrf_token %}
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+{% endblock %}
+
+{% block js_script %}
     <script src="{% static 'scripts/deletereview.js' %}"></script>
     <script src="{% static 'scripts/votereviews.js' %}"></script>
 {% endblock %}

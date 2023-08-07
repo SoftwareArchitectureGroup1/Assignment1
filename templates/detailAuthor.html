@@ -49,6 +49,9 @@
     {% endif %}
 </div>
 {% csrf_token %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'scripts/deleteBook.js' %}"></script>
+
+{% endblock %}
+
+{% block js_script %}
+    <script src="{% static 'scripts/deleteBook.js' %}"></script>
 {% endblock %}

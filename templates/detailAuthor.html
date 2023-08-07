@@ -36,6 +36,10 @@
                      <!– Cambiaaar ruta–>
                     <button class="btn btn-danger btn-sm delete-author-btn" data-author-id="{{ author.id }}">Delete</button>
                 </td>
+                <td>
+                        <a href="{% url 'book_sales_index' book_id=book.pk %}">View Sales</a>
+                    </td>
+
             </tr>
             {% endfor %}
         </tbody>

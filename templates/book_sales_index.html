@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Sales for {{ book.name }}</h1>
+    <a href="{% url 'create_sale' book_id=book.pk %}" class="btn btn-primary">Create Sale</a>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Year</th>
+                <th>Number of Sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for sale in sales %}
+            <tr>
+                <td>{{ sale.year }}</td>
+                <td>{{ sale.number_of_sales }}</td>
+                <td>
+                    <a href="{% url 'edit_sale' sale_id=sale.id %}" class="btn btn-info btn-sm">Edit</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

@@ -3,7 +3,13 @@
 
 {% block content %}
 <div class="container">
-    <h1>Search Results for "{{ query }}"</h1>
+    <h1>Search Books</h1>
+    <form action="{% url 'search_books' %}" method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Enter search query">
+        <button type="submit">Search</button>
+    </form>
+    {% if query %}
+    <p>Search Results for "{{ query }}"</p>
     <ul>
         {% for book in page_obj %}
             <li>{{ book.name }} - {{ book.author.name }}</li>
@@ -20,5 +26,10 @@
         <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
         <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Last</a>
     {% endif %}
+    {%endif%}
+</body>
+</html>
+
+
 </div>
 {% endblock %}

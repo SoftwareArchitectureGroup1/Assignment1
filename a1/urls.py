@@ -24,6 +24,7 @@ urlpatterns = [
     path('create_sale/<int:book_id>/', views.create_sale, name='create_sale'),
     path('book/<int:book_id>/sales/', views.book_sales_index, name='book_sales_index'),
     path('edit_sale/<int:sale_id>/', views.EditSaleView.as_view(), name='edit_sale'),
+    path('deletesale/<int:sale_id>/', views.delete_sale, name='delete-sale'),
 
 ]
 

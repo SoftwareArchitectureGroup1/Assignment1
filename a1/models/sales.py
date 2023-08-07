@@ -4,4 +4,16 @@ from . import Book
 class Sale(models.Model):
     book = models.ForeignKey(Book, on_delete=models.CASCADE, related_name='sales')
     year = models.IntegerField()
-    number_of_sales = models.IntegerField()
+    sales = models.IntegerField()
+
+    def save(self, *args, **kwargs):
+        book = self.book
+        book.number_of_sales += 1
+        book.save()
+        super(Sale, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        book = self.book
+        book.number_of_sales -= 1
+        book.save()
+        super(Sale, self).delete(*args, **kwargs)

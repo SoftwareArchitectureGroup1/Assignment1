@@ -62,12 +62,12 @@ class EditSaleView(View):
             return redirect(f'/book/{sale.book.id}/sales/')
         return render(request, self.template_name, {'form': form, 'sale': sale})
 
-def delete_author(request, sale_id):
+def delete_sale(request, sale_id):
     try:
-        author = Sale.objects.get(id=sale_id)
-        author.delete()
-        return JsonResponse({'message': 'Author deleted successfully.'})
+        sale = Sale.objects.get(id=sale_id)
+        sale.delete()
+        return JsonResponse({'message': 'Sale deleted successfully.'})
     except Author.DoesNotExist:
-        return JsonResponse({'error': 'Author not found.'}, status=404)
+        return JsonResponse({'error': 'Sale not found.'}, status=404)
     except Exception as e:
-        return JsonResponse({'error': 'Error deleting author.'}, status=500)
+        return JsonResponse({'error': 'Error deleting sale.'}, status=500)

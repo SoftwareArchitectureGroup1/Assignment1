@@ -1,6 +1,7 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+    <div class="container">
     <h1>Sales for {{ book.name }}</h1>
     <a href="{% url 'create_sale' book_id=book.pk %}" class="btn btn-primary">Create Sale</a>
     <table class="table mt-4">
@@ -18,8 +19,16 @@
                 <td>
                     <a href="{% url 'edit_sale' sale_id=sale.id %}" class="btn btn-info btn-sm">Edit</a>
                 </td>
+                <td>
+                    <button class="btn btn-danger btn-sm delete-sale-btn" data-sale-id="{{ sale.id }}">Delete</button>
+                </td>
             </tr>
+
             {% endfor %}
         </tbody>
     </table>
+    </div>
+    {% csrf_token %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'scripts/deletesale.js' %}"></script>
 {% endblock %}

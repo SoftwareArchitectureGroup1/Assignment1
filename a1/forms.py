@@ -16,5 +16,5 @@ class SaleForm(forms.ModelForm):
     year = forms.ChoiceField(choices=YEAR_CHOICES, widget=forms.Select)
     class Meta:
         model = Sale
-        fields = ['year', 'number_of_sales']
+        fields = ['year', 'sales']
 

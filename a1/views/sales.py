@@ -31,7 +31,7 @@ def book_sales_index(request, book_id):
 class IndexSales(View):
     def get(self, request, book_id):
         order_by = request.GET.get('order_by', 'id')
-        sales = Sale.objects.all().order_by(order_by)
+        sales = Sale.objects.filter(book = book_id).order_by(order_by)
         context = {
             'sales': SaleSerializer(sales, many=True).data
         }

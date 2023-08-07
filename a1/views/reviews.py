@@ -28,7 +28,7 @@ def create_review(request, book_id):
             sale = form.save(commit=False)
             sale.book = book
             sale.save()
-            return redirect(f'/book/{book_id}/reviews/')
+            return redirect(f'/book/{book_id}/reviews')
     else:
         form = ReviewForm()
     return render(request, 'create-reviews.html', {'form': form})

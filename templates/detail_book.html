@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>{{ books.name }}</h1>
+    <p><strong>Author:</strong> {{ books.author.name }}</p>
+    <p><strong>Date of Publication:</strong> {{ books.date_of_publication }}</p>
+    <p><strong>Summary:</strong> {{ books.summary }}</p>
+    <p><strong>Number of Sales:</strong> {{ books.number_of_sales }}</p>
+
+</div>
+{% csrf_token %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+{% endblock %}

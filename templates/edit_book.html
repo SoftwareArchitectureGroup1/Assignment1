@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Author</h1>
+        <form method="post" class="row g-3">
+            {% csrf_token %}
+            <div class="col-md-6">
+                <label for="{{ form.name.id_for_label }}" class="form-label">Name:</label>
+                {{ form.name|add_bootstrap_class:"form-control form-control-sm country-field" }}
+            </div>
+            <div class="col-md-6">
+                <label for="{{ form.date_of_publication.id_for_label }}" class="form-label">Date of Publication:</label>
+                {{ form.date_of_publication|add_bootstrap_class:"form-control" }}
+            </div>
+            <div class="col-12">
+                <label for="{{ form.summary.id_for_label }}" class="form-label">Summary:</label>
+                {{ form.summary|add_bootstrap_class:"form-control form-control-sm country-field" }}
+            </div>
+            <div class="col-12">
+                <label for="{{ form.number_of_sales.id_for_label }}" class="form-label">Number of Sales:</label>
+                {{ form.number_of_sales|add_bootstrap_class:"form-control" }}
+            </div>
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary">Edit</button>
+            </div>
+        </form>
+    </div>
+
+    <style>
+        .country-field {
+            width: 50%; /* Adjust the width as needed */
+            height: 28px; /* Adjust the height as needed */
+        }
+    </style>
+{% endblock %}

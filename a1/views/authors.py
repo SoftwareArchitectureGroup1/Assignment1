@@ -39,7 +39,7 @@ class AuthorCreateView(CreateView):
     form_class = AuthorForm
     template_name = 'createAuthor.html'
     success_url = reverse_lazy('indexAuthor')
-
+    
 def delete_author(request, author_id):
     try:
         author = Author.objects.get(id=author_id)

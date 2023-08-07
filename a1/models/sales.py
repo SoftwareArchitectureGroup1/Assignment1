@@ -8,12 +8,12 @@ class Sale(models.Model):
 
     def save(self, *args, **kwargs):
         book = self.book
-        book.number_of_sales += 1
+        book.number_of_sales += self.sales
         book.save()
         super(Sale, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
         book = self.book
-        book.number_of_sales -= 1
+        book.number_of_sales -= self.sales
         book.save()
         super(Sale, self).delete(*args, **kwargs)

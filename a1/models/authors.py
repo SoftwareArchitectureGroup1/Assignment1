@@ -14,8 +14,10 @@ class Author(models.Model):
     
     @property
     def average_score(self):
-        avg_score = 0
-        return 3
+        all_books = self.books.all()
+        counter = 0
+        total = 0
+        return 1
     
     @property
     def total_sales(self):

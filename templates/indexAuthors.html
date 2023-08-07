@@ -13,6 +13,9 @@
                 <th>Country</th>
                 <th>Birthday</th>
                 <th>Description</th>
+                <th>Published Books</th>
+                <th>Avg Score</th>
+                <th>Total Sales</th>
             </tr>
         </thead>
         <tbody>
@@ -22,6 +25,10 @@
                 <td>{{ author.country }}</td>
                 <td>{{ author.birthday }}</td>
                 <td>{{ author.description }}</td>
+                <td>{{ author.books_count }}</td>
+                <td>{{ author.average_score }}</td>
+                <td>{{ author.total_sales }}</td>
+
                 <td>
                     <a href="{% url 'edit-author' author_id=author.id %}" class="btn btn-info btn-sm">Edit</a>
                 </td>
@@ -32,6 +39,7 @@
             {% endfor %}
         </tbody>
     </table>
+
 </div>
     {% csrf_token %}
 

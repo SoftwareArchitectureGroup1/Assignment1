@@ -9,12 +9,14 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DeleteView
 from django.http import JsonResponse
 from django.views.generic import DetailView
+import json
 
 # TODO filtering and ordering
 # FIXME missing avg score field
 class AuthorsTableView(View):
     def get(self, request):
         order_by = request.GET.get('order_by', 'id')
+        print(order_by)
         authors = Author.objects.all().order_by(order_by)
 
         context = {
@@ -31,8 +33,17 @@ class IndexAuthorsView(View):
         context = {
             'authors': AuthorSerializer(authors, many=True).data
         }
-
         return render(request, 'indexAuthors.html', context)
+
+    def post(self, request):
+        try:
+            author = Author.objects.get(id=request.POST.get("author_id"))
+            author.delete()
+            return JsonResponse({'message': 'Author deleted successfully.'})
+        except Author.DoesNotExist:
+            return JsonResponse({'error': 'Author not found.'}, status=404)
+        except Exception as e:
+            return JsonResponse({'error': 'Error deleting author.'}, status=500)
 
 class AuthorCreateView(CreateView):
     model = Author

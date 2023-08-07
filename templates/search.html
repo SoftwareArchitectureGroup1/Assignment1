@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <h1>Search Books</h1>
+    <form action="{% url 'search_books' %}" method="get">
+        <input type="text" name="q" value="{{ query }}" placeholder="Enter search query">
+        <button type="submit">Search</button>
+    </form>
+    {% if query %}
+    <p>Search Results for "{{ query }}"</p>
+    <ul>
+        {% for book in page_obj %}
+            <li>{{ book.name }} - {{ book.author.name }}</li>
+        {% empty %}
+            <li>No books found.</li>
+        {% endfor %}
+    </ul>
+    {% if page_obj.has_previous %}
+        <a href="?q={{ query }}&page=1">First</a>
+        <a href="?q={{ query }}&page={{ page_obj.previous_page_number }}">Previous</a>
+    {% endif %}
+    <span>{{ page_obj.number }} of {{ page_obj.paginator.num_pages }}</span>
+    {% if page_obj.has_next %}
+        <a href="?q={{ query }}&page={{ page_obj.next_page_number }}">Next</a>
+        <a href="?q={{ query }}&page={{ page_obj.paginator.num_pages }}">Last</a>
+    {% endif %}
+    {%endif%}
+</body>
+</html>
+
+
+</div>
+{% endblock %}

@@ -11,6 +11,7 @@
                 <th>Score</th>
                 <th>Number of Up Votes</th>
                 <th>Number of Down Votes</th>
+                <th>Vote</th>
             </tr>
         </thead>
         <tbody>
@@ -20,6 +21,22 @@
                 <td>{{ review.score }}</td>
                 <td>{{ review.number_of_up_votes }}</td>
                 <td>{{ review.number_of_down_votes }}</td>
+                <td>
+                   <button class="btn btn-sm btn-upvote" data-review-id="{{ review.id }}">
+                        {% if review.number_of_up_votes > 0 %}
+                            <i class="fa fa-arrow-up filled"></i>
+                        {% else %}
+                            <i class="fa fa-arrow-up"></i>
+                        {% endif %}
+                    </button>
+                    <button class="btn btn-sm btn-downvote" data-review-id="{{ review.id }}">
+                        {% if review.number_of_down_votes > 0 %}
+                            <i class="fa fa-arrow-down filled"></i>
+                        {% else %}
+                            <i class="fa fa-arrow-down"></i>
+                        {% endif %}
+                    </button>
+                </td>
                 <td>
                     <a href="{% url 'edit_review' review_id=review.id %}" class="btn btn-info btn-sm">Edit</a>
                 </td>
@@ -33,6 +50,7 @@
     </table>
     </div>
     {% csrf_token %}
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="{% static 'scripts/deletereview.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{% static 'scripts/deletereview.js' %}"></script>
+    <script src="{% static 'scripts/votereviews.js' %}"></script>
 {% endblock %}

@@ -17,7 +17,6 @@ class BookCreateView(CreateView):
 
     def form_valid(self, form):
         author = Author.objects.get(pk=self.kwargs['author_id'])
-        
         book = form.save(commit=False)
         book.author = author
         book.save()

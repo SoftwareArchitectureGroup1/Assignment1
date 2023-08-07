@@ -60,3 +60,15 @@ def delete_review(request, review_id):
         return JsonResponse({'error': 'Review not found.'}, status=404)
     except Exception as e:
         return JsonResponse({'error': 'Error deleting review.'}, status=500)
+
+def upvote_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    review.number_of_up_votes += 1
+    review.save()
+    return JsonResponse({'upvotes': review.number_of_up_votes})
+
+def downvote_review(request, review_id):
+    review = get_object_or_404(Review, id=review_id)
+    review.number_of_down_votes += 1
+    review.save()
+    return JsonResponse({'downvotes': review.number_of_down_votes})

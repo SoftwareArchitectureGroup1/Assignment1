@@ -33,6 +33,8 @@ urlpatterns = [
     path('create_review/<int:book_id>/', views.create_review, name='create_review'),
     path('edit_review/<int:review_id>/', views.EditReviewView.as_view(), name='edit_review'),
     path('deletereview/<int:review_id>/', views.delete_review, name='delete-review'),
+    path('upvote_review/<int:review_id>/', views.upvote_review, name='upvote_review'),
+    path('downvote_review/<int:review_id>/', views.downvote_review, name='downvote_review'),
 ]
 
 if settings.DEBUG:

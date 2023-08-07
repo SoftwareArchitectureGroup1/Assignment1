@@ -34,6 +34,7 @@ class BookDetailView(DetailView):
     model = Book
     template_name = 'detail_book.html'
     context_object_name = 'books'
+    
 
 class EditBookView(View):
     template_name = 'edit_book.html'

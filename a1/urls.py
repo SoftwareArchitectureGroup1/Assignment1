@@ -20,6 +20,10 @@ urlpatterns = [
     path('deleteauthor/<int:author_id>/', views.delete_author, name='delete-author'),
     path('editauthor/<int:author_id>/', views.EditAuthorView.as_view(), name='edit-author'),
     path('detail-author-view/<int:pk>/', views.AuthorDetailView.as_view(), name='detail-author-view'),
+    path('book/details/<int:pk>/', views.BookDetailView.as_view(), name='detail-book'),
+    path('book/new/<int:author_id>', views.BookCreateView.as_view(), name='create-book'),
+    path('book/edit/<int:book_id>', views.EditBookView.as_view(), name='edit-book'),
+    path('book/delete/<int:book_id>', views.delete_book, name='delete-book')
 ]
 
 if settings.DEBUG:

@@ -9,8 +9,7 @@
     <p><strong>Description:</strong> {{ author.description }}</p>
 
     <h2>Books Written by {{ author.name }}</h2>
-  <!– Cambiaaar ruta–>
-    <a href="{% url 'create-author' %}" class="btn btn-primary">Create New Book</a>
+    <a href="{% url 'create-book' author_id=author.id %}" class="btn btn-primary">Create New Book</a>
     {% if books %}
         <table class="table mt-4">
         <thead>
@@ -29,12 +28,10 @@
                 <td>{{ book.date_of_publication }}</td>
                 <td>{{ book.number_of_sales }}</td>
                 <td>
-                     <!– Cambiaaar ruta–>
-                    <a href="{% url 'edit-author' author_id=author.id %}" class="btn btn-info btn-sm">Edit</a>
+                    <a href="{% url 'edit-book' book_id=book.id %}" class="btn btn-info btn-sm">Edit</a>
                 </td>
                 <td>
-                     <!– Cambiaaar ruta–>
-                    <button class="btn btn-danger btn-sm delete-author-btn" data-author-id="{{ author.id }}">Delete</button>
+                    <button class="btn btn-danger btn-sm delete-book-btn" data-book-id="{{ book.id }}">Delete</button>
                 </td>
             </tr>
             {% endfor %}
@@ -44,4 +41,7 @@
         <p>No books written by this author yet.</p>
     {% endif %}
 </div>
+{% csrf_token %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'scripts/deleteBook.js' %}"></script>
 {% endblock %}

@@ -76,6 +76,5 @@ class AuthorDetailView(DetailView):
         context = super().get_context_data(**kwargs)
         author = self.get_object()
         books = author.books.all()
-        print("Number of books:", books.count())
         context['books'] = books
         return context

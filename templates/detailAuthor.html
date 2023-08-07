@@ -4,17 +4,44 @@
 {% block content %}
 <div class="container">
     <h1>{{ author.name }}</h1>
-    <p>Birthday: {{ author.birthday }}</p>
-    <p>Country: {{ author.country }}</p>
-    <p>Description: {{ author.description }}</p>
+    <p><strong>Birthday:</strong> {{ author.birthday }}</p>
+    <p><strong>Country:</strong> {{ author.country }}</p>
+    <p><strong>Description:</strong> {{ author.description }}</p>
 
-    <h2>Books by {{ author.name }}</h2>
-    <ul>
-        {% for book in books %}
-            <li>{{ book.name }} - {{ book.date_of_publication }}</li>
-        {% empty %}
-            <li>No books found.</li>
-        {% endfor %}
-    </ul>
+    <h2>Books Written by {{ author.name }}</h2>
+  <!– Cambiaaar ruta–>
+    <a href="{% url 'create-author' %}" class="btn btn-primary">Create New Book</a>
+    {% if books %}
+        <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Summary</th>
+                <th>Date of Publication</th>
+                <th>Number of sales</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books%}
+            <tr>
+                <td>{{ book.name }}</td>
+                <td>{{ book.summary }}</td>
+                <td>{{ book.date_of_publication }}</td>
+                <td>{{ book.number_of_sales }}</td>
+                <td>
+                     <!– Cambiaaar ruta–>
+                    <a href="{% url 'edit-author' author_id=author.id %}" class="btn btn-info btn-sm">Edit</a>
+                </td>
+                <td>
+                     <!– Cambiaaar ruta–>
+                    <button class="btn btn-danger btn-sm delete-author-btn" data-author-id="{{ author.id }}">Delete</button>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% else %}
+        <p>No books written by this author yet.</p>
+    {% endif %}
 </div>
 {% endblock %}

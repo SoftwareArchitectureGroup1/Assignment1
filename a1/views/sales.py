@@ -1,14 +1,6 @@
-from django.shortcuts import render, get_object_or_404, redirect, reverse
-from django.urls import reverse_lazy
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views import View
-from a1.models import Author
-from a1.models import Book
-from a1.models import Sale
-from a1.serializers import AuthorSerializer
 from a1.serializers import SaleSerializer
-from a1.forms import AuthorForm
-from django.views.generic.edit import CreateView
-from django.views.generic import DeleteView
 from django.http import JsonResponse
 from django.shortcuts import render, redirect
 from a1.models import Sale, Book

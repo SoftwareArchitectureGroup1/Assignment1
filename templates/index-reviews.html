@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div class="container">
+    <h1>Reviews for {{ book.name }}</h1>
+        <a href="{% url 'create_review' book_id=book.pk %}" class="btn btn-primary">Create Review</a>
+    <table class="table mt-4">
+        <thead>
+            <tr>
+                <th>Review</th>
+                <th>Score</th>
+                <th>Number of Up Votes</th>
+                <th>Number of Down Votes</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for review in reviews %}
+            <tr>
+                <td>{{ review.review }}</td>
+                <td>{{ review.score }}</td>
+                <td>{{ review.number_of_up_votes }}</td>
+                <td>{{ review.number_of_down_votes }}</td>
+            </tr>
+
+            {% endfor %}
+        </tbody>
+    </table>
+    </div>
+    {% csrf_token %}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{% static 'scripts/deletesale.js' %}"></script>
+{% endblock %}

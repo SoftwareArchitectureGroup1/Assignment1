@@ -1,6 +1,6 @@
 from django import forms
 from .models import Author
-from .models import Sale
+from .models import Sale, Review
 from .models import Book
 
 class AuthorForm(forms.ModelForm):
@@ -17,4 +17,11 @@ class SaleForm(forms.ModelForm):
     class Meta:
         model = Sale
         fields = ['year', 'sales']
+
+class ReviewForm(forms.ModelForm):
+    SCORE_CHOICES = [(year, year) for year in range(1, 6)]
+    score = forms.ChoiceField(choices=SCORE_CHOICES, widget=forms.Select)
+    class Meta:
+        model = Review
+        fields = ['review', 'score']
 

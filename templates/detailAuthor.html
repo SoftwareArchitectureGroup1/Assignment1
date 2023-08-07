@@ -38,7 +38,10 @@
                 </td>
                 <td>
                         <a href="{% url 'book_sales_index' book_id=book.pk %}">View Sales</a>
-                    </td>
+                </td>
+                <td>
+                        <a href="{% url 'reviews' book_id=book.pk %}">View Reviews</a>
+                </td>
 
             </tr>
             {% endfor %}

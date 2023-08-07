@@ -20,6 +20,9 @@
                 <td>{{ review.score }}</td>
                 <td>{{ review.number_of_up_votes }}</td>
                 <td>{{ review.number_of_down_votes }}</td>
+                <td>
+                    <a href="{% url 'edit_review' review_id=review.id %}" class="btn btn-info btn-sm">Edit</a>
+                </td>
             </tr>
 
             {% endfor %}

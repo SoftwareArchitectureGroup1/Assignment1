@@ -32,3 +32,21 @@ def create_review(request, book_id):
     else:
         form = ReviewForm()
     return render(request, 'create-reviews.html', {'form': form})
+
+
+class EditReviewView(View):
+    template_name = 'edit-review.html'
+    form_class = ReviewForm
+
+    def get(self, request, review_id):
+        review = get_object_or_404(Review, id=review_id)
+        form = self.form_class(instance=review)
+        return render(request, self.template_name, {'form': form, 'sale': review})
+
+    def post(self, request, review_id):
+        review = get_object_or_404(Review, id=review_id)
+        form = self.form_class(request.POST, instance=review)
+        if form.is_valid():
+            form.save()
+            return redirect(f'/book/{review.book.id}/reviews')
+        return render(request, self.template_name, {'form': form, 'review': review})

@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block content %}
+    <div class="container">
+        <h1>Edit Review</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Edit Review">
+        </form>
+    </div>
+
+
+{% endblock %}

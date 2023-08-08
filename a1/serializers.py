@@ -9,7 +9,7 @@ class AuthorSerializer(serializers.ModelSerializer):
 class BookSerializer(serializers.ModelSerializer):
     class Meta:
         model = Book
-        fields = '__all__'
+        fields = ['id', 'name', 'summary', 'date_of_publication', 'number_of_sales', 'author', 'score']
 
 class ReviewSerializer(serializers.ModelSerializer):
     class Meta:
@@ -17,6 +17,11 @@ class ReviewSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class SaleSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Sale
+        fields = '__all__'
+
+class Top10Serializer(serializers.ModelSerializer):
     class Meta:
         model = Sale
         fields = '__all__'

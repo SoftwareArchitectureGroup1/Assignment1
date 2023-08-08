@@ -1,26 +1,51 @@
 {% extends "base.html" %}
 {% load static %}
 {% load sort_tags %}
+{% load filter_tags %}
 
 {% block content %}
 <div class="container">
     <h1>Authors</h1>
     <a href="{% url 'create-author' %}" class="btn btn-primary">Create New Author</a>
-
     <table class="table mt-4">
         <thead>
+        <form method="GET" action="{% url 'indexAuthor' %}">
             <tr>
                 <th><a href="{% sort_url request.GET 'name' %}">Name</a></th>
                 <th><a href="{% sort_url request.GET 'country' %}">Country</a></th>
                 <th><a href="{% sort_url request.GET 'birthday' %}">Birthday</a></th>
                 <th><a href="{% sort_url request.GET 'description' %}">Description</a></th>
-                <th><a href="{% sort_url request.GET 'books_count' %}">Published Books</a></th>
-                <th><a href="{% sort_url request.GET 'average_score' %}">Avg Score</a></th>
-                <th><a href="{% sort_url request.GET 'total_sales' %}">Total Sales</a></th>
+
+                <th><a href="{% sort_url request.GET 'books_count' %}">Published Books</a>
+                    <select id="books_count-filter" name="books_count">
+                        <option value="">All</option>
+                        {% for count in all_books_counts %}
+                            <option value="{{ count }}">{{ count }} book{{ count|pluralize }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+                <th><a href="{% sort_url request.GET 'average_score' %}">Avg Score</a>
+                    <select id="average_score-filter" name="average_score">
+                        <option value="">All</option>
+                        {% for score in all_average_scores %}
+                            <option value="{{ score }}">{{ score }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+                <th><a href="{% sort_url request.GET 'total_sales' %}">Total Sales</a>
+                    <select id="average_score-filter" name="total_sales">
+                        <option value="">All</option>
+                        {% for sales in all_total_sales %}
+                            <option value="{{ sales }}">{{ sales }}</option>
+                        {% endfor %}
+                    </select>
+                </th>
+            <th> <button type="submit" class="btn btn-primary">Apply Filters</button></th>
             </tr>
+        </form>
         </thead>
         <tbody>
-            {% for author in authors %}
+        {% for author in authors|filter_authors:request.GET %}
             <tr>
                 <td><a href="{% url 'detail-author-view' pk=author.id %}">{{ author.name }}</a></td>
                 <td>{{ author.country }}</td>

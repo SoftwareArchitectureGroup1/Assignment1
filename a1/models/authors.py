@@ -24,7 +24,7 @@ class Author(models.Model):
                     for review in reviews:
                         counter+=1
                         total+= review.score
-                    return total/counter
+                    return float(f'{total/counter:.2f}')
                 else:
                     return 0
         else:

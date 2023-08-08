@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
+{% load sort_tags %}
 
 {% block content %}
 <div class="container">
@@ -9,13 +10,13 @@
     <table class="table mt-4">
         <thead>
             <tr>
-                <th>Name</th>
-                <th>Country</th>
-                <th>Birthday</th>
-                <th>Description</th>
-                <th>Published Books</th>
-                <th>Avg Score</th>
-                <th>Total Sales</th>
+                <th><a href="{% sort_url request.GET 'name' %}">Name</a></th>
+                <th><a href="{% sort_url request.GET 'country' %}">Country</a></th>
+                <th><a href="{% sort_url request.GET 'birthday' %}">Birthday</a></th>
+                <th><a href="{% sort_url request.GET 'description' %}">Description</a></th>
+                <th><a href="{% sort_url request.GET 'books_count' %}">Published Books</a></th>
+                <th><a href="{% sort_url request.GET 'average_score' %}">Avg Score</a></th>
+                <th><a href="{% sort_url request.GET 'total_sales' %}">Total Sales</a></th>
             </tr>
         </thead>
         <tbody>

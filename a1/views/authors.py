@@ -1,7 +1,9 @@
+from django.db.models.functions import Cast
 from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
 from django.views import View
 from a1.models import Author
+from django.db.models import F, FloatField
 from a1.models import Book
 from a1.serializers import AuthorSerializer
 from a1.forms import AuthorForm
@@ -9,7 +11,7 @@ from django.views.generic.edit import CreateView
 from django.views.generic import DeleteView
 from django.http import JsonResponse
 from django.views.generic import DetailView
-import json
+from operator import attrgetter
 
 # TODO filtering and ordering
 # FIXME missing avg score field
@@ -27,11 +29,23 @@ class AuthorsTableView(View):
 
 class IndexAuthorsView(View):
     def get(self, request):
-        order_by = request.GET.get('order_by', 'id')
-        authors = Author.objects.all().order_by(order_by)
-
+        sort_by = request.GET.get('sort_by', 'id')
+        sort_order = request.GET.get('sort_order', 'asc')  # Default sort order ascending
+        special_fields = ['books_count', 'average_score',
+                             'total_sales']
+        if sort_by not in special_fields:
+            authors = Author.objects.all().order_by(sort_by)
+        else:
+            authors = Author.objects.all()
+            if (sort_order == "asc"):
+                reverse = False
+            else:
+                reverse = True
+            sorted_authors = sorted(authors, key=attrgetter(sort_by), reverse=reverse)
+            authors = sorted_authors
         context = {
-            'authors': AuthorSerializer(authors, many=True).data
+            'authors': AuthorSerializer(authors, many=True).data,
+            'sort_order': sort_order,
         }
         return render(request, 'indexAuthors.html', context)
 

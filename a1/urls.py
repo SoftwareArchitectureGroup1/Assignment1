@@ -34,6 +34,7 @@ urlpatterns = [
     path('upvote_review/<int:review_id>/', views.upvote_review, name='upvote_review'),
     path('downvote_review/<int:review_id>/', views.downvote_review, name='downvote_review'),
     path('search/', views.search, name='search_books'),
+    path('top10Books/', views.TopRatedTableView.as_view(), name='top_10_rated'),
 ]
 
 if settings.DEBUG:

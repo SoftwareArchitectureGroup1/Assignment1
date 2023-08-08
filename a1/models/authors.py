@@ -17,8 +17,19 @@ class Author(models.Model):
         all_books = self.books.all()
         counter = 0
         total = 0
-        return 1
-    
+        if all_books:
+            for book in all_books:
+                reviews = book.reviews.all()
+                if reviews:
+                    for review in reviews:
+                        counter+=1
+                        total+= review.score
+                    return total/counter
+                else:
+                    return 0
+        else:
+            return 0
+
     @property
     def total_sales(self):
         sales = 0

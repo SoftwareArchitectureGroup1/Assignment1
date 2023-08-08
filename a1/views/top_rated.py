@@ -28,8 +28,6 @@ class TopRatedTableView(View):
                 topReview_data = ReviewSerializer(topReview, many=True).data
                 worstReview_data = ReviewSerializer(worstReview, many=True).data
                 
-                print(topReview_data)
-                
                 reviews[book.id] = {
                     'topReview': topReview_data[0]['review'],
                     'worstReview': worstReview_data[0]['review']

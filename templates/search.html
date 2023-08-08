@@ -12,7 +12,12 @@
     <p>Search Results for "{{ query }}"</p>
     <ul>
         {% for book in page_obj %}
-            <li>{{ book.name }} - {{ book.author.name }}</li>
+            <li>
+                {{ book.name }} - {{ book.author.name }}
+                <ul>
+                    <li> {{ book.summary }}</li>
+                </ul>
+            </li>
         {% empty %}
             <li>No books found.</li>
         {% endfor %}

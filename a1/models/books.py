@@ -11,7 +11,6 @@ class Book(models.Model):
     @property
     def score(self):
         reviews = self.reviews.all()
-        #reviews = Review.objects.filter(book_id=self.pk)
         if reviews:
             total_rating = sum(review.score for review in reviews)
             return total_rating / len(reviews)

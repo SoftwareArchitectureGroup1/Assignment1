@@ -6,3 +6,4 @@ from .sales import *
 from .reviews import *
 from .search import *
 from .top_rated import *
+from .top_sellers import *

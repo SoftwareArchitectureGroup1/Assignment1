@@ -34,7 +34,6 @@ class TopRatedTableView(View):
                 }
                      
             context['reviews'] = reviews
-        print(context)
         return render(request, 'topTenBooks.html', context)
 
 

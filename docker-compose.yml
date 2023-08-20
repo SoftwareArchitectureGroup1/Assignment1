@@ -1,0 +1,37 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo
+    container_name : mongoDatabase
+    environment:
+      - MONGO_INITDB_DATABASE=myDatabase
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=password
+    ports:
+      - '27017:27017'
+    volumes: 
+      - ./data-mongodb:/data/db
+    networks:
+      - mynetwork
+    
+  app:
+    build: .
+    container_name: webApp
+    command: bash -c "
+                    python manage.py makemigrations &&
+                    python manage.py migrate &&
+                    python manage.py seed &&
+                    python manage.py runserver 0.0.0.0:8000
+                    " 
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    networks:
+      - mynetwork
+    depends_on:
+      - mongodb
+
+networks:
+  mynetwork:
+    driver: bridge
